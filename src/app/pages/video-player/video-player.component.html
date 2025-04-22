@@ -1,20 +1,41 @@
-<div *ngIf="videoContent" class="container">
+<div *ngIf="videoContent" class="video-detail-container">
 
-  <div class="title text-center mt-5">
-    <h1>{{ videoContent.title }}</h1>
+  <div class="title-container">
+    <h1 class="title">{{ videoContent.title }}</h1>
+    <div class="title-gradient"></div>
   </div>
 
-  <ng-container *ngIf="videoUrl; else showImage">
-    <iframe class="mt-10 mx-auto block" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
-  </ng-container>
+  <div class="media-container">
+    <ng-container *ngIf="videoUrl; else showImage">
+      <div class="video-wrapper">
+        <iframe [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </ng-container>
 
-  <ng-template #showImage>
-    <img class="mt-10 mx-auto block overflow-hidden" [src]="imageUrl" alt="{{ videoContent.title }}" />
-  </ng-template>
-
-  <div class="overview mx-auto mt-5 px-6">
-    <h1 class="underline text-xl mb-2">Overview</h1>
-    <p>{{ videoContent.overview }}</p>
+    <ng-template #showImage>
+      <div class="image-wrapper">
+        <img [src]="imageUrl" alt="{{ videoContent.title }}" />
+        <div class="image-overlay"></div>
+      </div>
+    </ng-template>
   </div>
 
+  <div class="content-container">
+    <section class="overview-section">
+      <h2 class="section-title">Overview</h2>
+      <p class="overview-text">{{ videoContent.overview }}</p>
+    </section>
+
+    <section class="carousel-section">
+      <h2 class="section-title trending-title">Trending Movies</h2>
+      <app-movie-carousel [videoContents]="movies"></app-movie-carousel>
+    </section>
+
+    <section class="carousel-section">
+      <h2 class="section-title trending-title">Trending TV Shows</h2>
+      <app-movie-carousel [videoContents]="tvShows"></app-movie-carousel>
+    </section>
+  </div>
+
+  <app-footer class="footer"></app-footer>
 </div>

@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BG_iMG_URL, LOGO_URL } from '../../constants/config';
 import { AuthService } from '../../shared/services/auth.service';
-import { googleAuth } from '../../../environment';
+import { googleAuth } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
